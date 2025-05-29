@@ -3,7 +3,7 @@ Making a drum midi controller using Arduino
 You can see my Project on here https://perfectsilentproject.blogspot.com/2025/05/nard-drum-midi-controller-making.html
 
 Open Source Code. You can change and improve the coding.
-You can use the Code for building Drum Module for making Full Drum Kit Controller.
+You can use the Code for building Full Drum Kit Controller.
 
 Flexible Value on the Code, you can change :
 - For All Piezzo input :
