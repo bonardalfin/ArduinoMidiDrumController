@@ -20,7 +20,7 @@ Flexible, You can change the Value on the Code : :
   - Midi Note Close (0-127)
   - Midi Note Pedal (0-127)
     
-You can use Arduino Pro Micro (Recomended) or Arduino Leonardo
+You can use Arduino Pro Micro (Recomended) or Arduino Leonardo (Not tested yet)
 *I still using Bahasa Indonesia on Code, Just use google translate. 
 
 To do :
