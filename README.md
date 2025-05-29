@@ -5,7 +5,7 @@ You can see my Project on here https://perfectsilentproject.blogspot.com/2025/05
 Open Source Code. You can change and improve the coding.
 You can use the Code for building Full Drum Kit Controller.
 
-Flexible Value on the Code, you can change :
+Flexible, You can change the Value on the Code : :
 - For All Piezzo input :
   - Active : False/True
   - Midi Note (0-127)
@@ -22,3 +22,9 @@ Flexible Value on the Code, you can change :
     
 You can use Arduino Pro Micro (Recomended) or Arduino Leonardo
 *I still using Bahasa Indonesia on Code, Just use google translate. 
+
+To do :
+- Adding LCD Display module
+- Adding 2 Rotary Encoder for Menu Navigation
+- Adding Menu on coding to change Value
+- Adding  Optical Hi-hat Controller with TCRT5000 Module
