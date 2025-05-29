@@ -3,7 +3,9 @@ Making a drum midi controller using Arduino
 You can see my Project on here https://perfectsilentproject.blogspot.com/2025/05/nard-drum-midi-controller-making.html
 
 Open Source Code. You can change and improve the coding.
+
 You can use the Code for building Full Drum Kit Controller.
+
 
 Flexible, You can change the Value on the Code :
 - For All Piezzo input :
@@ -19,9 +21,12 @@ Flexible, You can change the Value on the Code :
 - For Hihat Pedal :
   - Midi Note Close (0-127)
   - Midi Note Pedal (0-127)
+
     
-You can use Arduino Pro Micro (Recomended) or Arduino Leonardo (Not tested yet)
+You can use Arduino Pro Micro (Recomended) or Arduino Leonardo (Not tested yet).
+
 *I still using Bahasa Indonesia on Code, Just use google translate. 
+
 
 To do :
 - Adding LCD Display module
