@@ -5,7 +5,7 @@ You can see my Project on here https://perfectsilentproject.blogspot.com/2025/05
 Open Source Code. You can change and improve the coding.
 You can use the Code for building Full Drum Kit Controller.
 
-Flexible, You can change the Value on the Code : :
+Flexible, You can change the Value on the Code :
 - For All Piezzo input :
   - Active : False/True
   - Midi Note (0-127)
