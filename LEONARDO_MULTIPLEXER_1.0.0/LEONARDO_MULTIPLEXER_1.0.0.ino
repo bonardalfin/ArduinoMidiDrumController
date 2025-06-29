@@ -22,7 +22,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // === Wiring CD74HC4067 ke Arduino Leonardo ===
 // MUX Pin        Arduino
-// SIG            A11
+// SIG            A5
 // S0             2
 // S1             3
 // S2             4
@@ -50,19 +50,19 @@
 const bool debugMode = false;
 
 // === Pin MUX ===
-const int muxSIGPin = A11; // Analog pin untuk membaca MUX
+const int muxSIGPin = A5; // Analog pin untuk membaca MUX
 const int muxS0 = 2;
 const int muxS1 = 3;
 const int muxS2 = 4;
 const int muxS3 = 5;
 
 // === Konfigurasi ===
-const byte numDirectPads = 11; // Jumlah Pad yang Direct ke Arduino
-const byte numMuxPads = 16; // Jumlah Pad yang digunakan di Multiplexer CD74HC4067
+const byte numDirectPads = 12; // Tidak perlu diubah - Jumlah Pad yang Direct ke Arduino
+const byte numMuxPads = 16; // Tidak perlu diubah - Jumlah Pad yang digunakan di Multiplexer CD74HC4067
 const byte totalPads = numDirectPads + numMuxPads;
 
 const byte piezoDirectPins[numDirectPads] = {
-  A0, A1, A2, A3, A4, A5, A6, A7, A8, A9, A10 // Piezo Pin yang digunakan direct Arduino
+  A0, A1, A2, A3, A4, A5, 4, 6, 7, 8, 9, 10 // Piezo Pin yang digunakan direct Arduino
   };
 
 // === Konfigurasi  Aktif / Tidak Aktif (Wajib diubah) ===
@@ -78,11 +78,12 @@ const bool padEnabled[totalPads] = {
   false, // A3 direct
   false, // A4 direct
   false, // A5 direct
-  false, // A6 direct
-  false, // A7 direct
-  false, // A8 direct
-  false, // A9 direct
-  false, // A10 direct (hi-hat)
+  false, // 4 direct
+  false, // 6 direct
+  false, // 7 direct
+  false, // 8 direct
+  false, // 9 direct
+  false, // 10 direct  (hi-hat)
   
   false, // C0 mux
   false, // C1 mux
@@ -105,13 +106,40 @@ const bool padEnabled[totalPads] = {
 // MIDI Notes per pad
 // Midi Note Number (googling aja) dan hihat diletakan terakhir direct (disini hihat = 46)
 byte midiNotes[totalPads] = {
-  36, 38, 40, 41, 43, 45, 47, 48, 50, 51, 46,    // direct
-  60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74 // mux
+  36, // A0 direct
+  38, // A1 direct
+  40, // A2 direct
+  41, // A3 direct
+  43, // A4 direct
+  45, // A5 direct
+  47, // 4 direct
+  48, // 6 direct
+  50, // 7 direct
+  51, // 8 direct
+  60, // 9 direct
+  46, // 10 direct (hi-hat)
+  
+  50, // C0 mux
+  51, // C1 mux
+  60, // C2 mux
+  61, // C3 mux
+  62, // C4 mux
+  63, // C5 mux
+  64, // C6 mux
+  65, // C7 mux
+  66, // C8 mux
+  67, // C9 mux
+  68, // C10 mux
+  69, // C11 mux
+  70, // C12 mux
+  71, // C13 mux
+  72, // C14 mux
+  73 // C15 mux
 };
 
 // === Hi-Hat Switch ===
 const int hiHatSwitchPin = 7;  // Pin Digital switch yang digunakan untuk ubah open atau close Hihat pada Arduino
-const byte hiHatPadIndex = 10; // pad direct terakhir - Pin A10 pada Arduino
+const byte hiHatPadIndex = 11; // pad direct terakhir - Pin A10 pada Arduino
 const byte hiHatOpenNote = 46; // Note hihat open, bisa diganti cek Midi Note Number
 const byte hiHatClosedNote = 42;  // Note hihat tutup, bisa diganti cek Midi Note Number
 // Untuk pedal hihat bisa Ctrl+F cari : MIDI note 44 - Nanti disana bisa ganti Midi Note Number nya
@@ -133,20 +161,21 @@ struct PadConfig {
 // Lihat artinya di Konfigurasi Sensor Piezo diatas
 PadConfig padConfigs[totalPads];
 void initPadConfigs() {
-  // Pad 0–10: Direct
-  padConfigs[0]  = {50, 900, 40, 127, 10, 120}; // Kick
-  padConfigs[1]  = {17, 550, 15, 127, 0, 50}; // Snare
-  padConfigs[2]  = {60, 870, 50, 127, 10, 120}; // Tom 1
-  padConfigs[3]  = {60, 870, 50, 127, 10, 120}; // Tom 2
-  padConfigs[4]  = {60, 870, 50, 127, 10, 120}; // Floor Tom
-  padConfigs[5]  = {50, 860, 40, 127, 10, 120}; // Crash 1
-  padConfigs[6]  = {50, 860, 40, 127, 10, 120}; // Crash 2
-  padConfigs[7]  = {55, 880, 45, 127, 10, 120}; // Ride
-  padConfigs[8]  = {55, 880, 45, 127, 10, 120}; // Bell
-  padConfigs[9]  = {50, 850, 35, 127, 10, 120}; // Splash
-  padConfigs[10] = {20, 500, 15, 127, 0, 50}; // Hi-hat (switched open/closed)
+  // Pad Direct
+  padConfigs[0]  = {50, 900, 40, 127, 10, 120}; // A0 direct
+  padConfigs[1]  = {17, 550, 15, 127, 0, 50}; // A1 direct
+  padConfigs[2]  = {60, 870, 50, 127, 10, 120}; // A2 direct
+  padConfigs[3]  = {60, 870, 50, 127, 10, 120}; // A3 direct
+  padConfigs[4]  = {60, 870, 50, 127, 10, 120}; // A4 direct
+  padConfigs[5]  = {50, 860, 40, 127, 10, 120}; // A5 direct
+  padConfigs[6]  = {50, 860, 40, 127, 10, 120}; // 4 direct
+  padConfigs[7]  = {55, 880, 45, 127, 10, 120}; // 6 direct
+  padConfigs[8]  = {55, 880, 45, 127, 10, 120}; // // 7 direct
+  padConfigs[9]  = {50, 850, 35, 127, 10, 120}; // 8 direct
+  padConfigs[10] = {20, 500, 15, 127, 0, 50}; // 9 direct 
+  padConfigs[11] = {20, 500, 15, 127, 0, 50}; // 10 direct Hi-hat (switched open/closed)
 
-  // Pad 11–26: MUX
+  // Pad MUX
   padConfigs[11] = {55, 890, 45, 127, 10, 120}; // C0 mux
   padConfigs[12] = {55, 890, 45, 127, 10, 120}; // C1 mux
   padConfigs[13] = {55, 890, 45, 127, 10, 120}; // C2 mux
@@ -177,7 +206,7 @@ void setup() {
   if (debugMode) {
     Serial.begin(115200);
     while (!Serial);
-    Serial.println("27-Pad MIDI Drum with Multiplexer");
+    Serial.println("MIDI Drum with Multiplexer");
   }
 
   pinMode(hiHatSwitchPin, INPUT_PULLUP);
