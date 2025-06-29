@@ -28,8 +28,8 @@
 const bool debugMode = false;
 
 // === Konfigurasi ===
-const byte numDirectPads = 9;
-const byte piezoDirectPins[numDirectPads] = {A0, A1, A2, A3, A6, A7, A8, A9, A10};
+const byte numDirectPads = 9; // Tidak perlu diubah - Jumlah Pad yang Direct ke Arduino
+const byte piezoDirectPins[numDirectPads] = {A0, A1, A2, A3, A6, A7, A8, A9, A10};  // Tidak perlu diubah
 
 // === Konfigurasi  Aktif / Tidak Aktif (Wajib diubah) ===
 // Aktifkan HANYA pad yang sudah dipasangi piezo
@@ -52,7 +52,15 @@ const bool padEnabled[numDirectPads] = {
 // MIDI Notes per pad
 // Midi Note Number (googling aja) dan hihat diletakan terakhir direct (disini hihat = 46)
 byte midiNotes[numDirectPads] = {
-  36, 38, 40, 41, 43, 45, 47, 48, 46
+  36, // A0
+  38, // A1
+  40, // A2
+  41, // A3
+  43, // A6
+  45, // A7
+  47, // A8
+  48, // A9
+  46  // A10 (hi-hat)
 };
 
 // === Hi-Hat Switch ===
@@ -79,15 +87,15 @@ struct PadConfig {
 // Lihat artinya di Konfigurasi Sensor Piezo diatas
 PadConfig padConfigs[numDirectPads];
 void initPadConfigs() {
-  padConfigs[0]  = {50, 900, 40, 127, 10, 120}; // Kick
-  padConfigs[1]  = {5, 550, 15, 127, 0, 50}; // Snare
-  padConfigs[2]  = {60, 870, 50, 127, 10, 120}; // Tom 1
-  padConfigs[3]  = {60, 870, 50, 127, 10, 120}; // Tom 2
-  padConfigs[4]  = {60, 870, 50, 127, 10, 120}; // Floor Tom
-  padConfigs[5]  = {50, 860, 40, 127, 10, 120}; // Crash 1
-  padConfigs[6]  = {50, 860, 40, 127, 10, 120}; // Crash 2
-  padConfigs[7]  = {55, 880, 45, 127, 10, 120}; // Ride
-  padConfigs[8]  = {10, 200, 20, 127, 0, 50};  // Hi-hat (switched open/closed)
+  padConfigs[0]  = {50, 900, 40, 127, 10, 120}; // A0
+  padConfigs[1]  = {5, 550, 15, 127, 0, 50}; // A1
+  padConfigs[2]  = {60, 870, 50, 127, 10, 120}; // A2
+  padConfigs[3]  = {60, 870, 50, 127, 10, 120}; // A3
+  padConfigs[4]  = {60, 870, 50, 127, 10, 120}; // A6
+  padConfigs[5]  = {50, 860, 40, 127, 10, 120}; // A7
+  padConfigs[6]  = {50, 860, 40, 127, 10, 120}; // A8
+  padConfigs[7]  = {55, 880, 45, 127, 10, 120}; // A9
+  padConfigs[8]  = {10, 200, 20, 127, 0, 50};  // A10 Hi-hat (switched open/closed)
 }
 
 // === Variabel Internal ===
@@ -102,7 +110,7 @@ void setup() {
   if (debugMode) {
     Serial.begin(115200);
     while (!Serial);
-    Serial.println("11-Pad MIDI Drum");
+    Serial.println("MIDI Drum");
   }
 
   pinMode(hiHatSwitchPin, INPUT_PULLUP);
