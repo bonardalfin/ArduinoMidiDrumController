@@ -1,6 +1,6 @@
 # Arduino Midi Drum Controller
 Making a drum midi controller using Arduino
-You can see my Project on here https://perfectsilentproject.blogspot.com/2025/05/nard-drum-midi-controller-making.html
+You can see my Project on here https://bonardalfinproject.blogspot.com/2025/09/nard-drum-midi-controller-making.html
 
 Open Source Code. You can change and improve the coding.
 
